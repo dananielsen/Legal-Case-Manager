@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 
-const register = () => {
+const useRegister = () => {
     const [email, setEmail ] = useState("")
     const [password, setPassword ] = useState("")
     const SubmitHandler = async (e) => {
@@ -31,4 +31,4 @@ const register = () => {
   )
 }
 
-export default register
+export default useRegister
