@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme';
 import createEmotionCache from "../config/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
+import {withRedux} from '../redux/store'
 
 const clientSideEmotionCache = createEmotionCache();
 

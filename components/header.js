@@ -50,9 +50,15 @@ export default function ButtonAppBar() {
           >
            
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div"  sx={{ flexGrow: 1 }}>
+            AVIATO
+          </Typography>
+          <Typography variant="h6" component="div">
             {userState && userState.email}
           </Typography>
+
+
+          <Box sx={{ml: 2 }}>
           {user ? (
           <> 
           <Button color="inherit" onClick={logoutHandler}>Logout</Button>
@@ -65,7 +71,7 @@ export default function ButtonAppBar() {
           <Button color="inherit">Register</Button>
           </Link>
           </>)}
-         
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
