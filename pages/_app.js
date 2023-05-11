@@ -8,7 +8,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme';
 import createEmotionCache from "../config/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
-import {withRedux} from '../redux/store'
+
+import { wrapper } from '../redux/store'
+import { Provider } from 'react-redux'
+
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -25,9 +28,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <React.Fragment>
       <Head>
-        <title>My page</title>
+        <title>Aviato</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
+      <Provider store={wrapper}>
       <ThemeProvider theme={theme}>
       <SessionProvider session={session}>
       <Layout>
@@ -36,6 +40,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     </SessionProvider>
         <CssBaseline />
       </ThemeProvider>
+      </Provider>
     </React.Fragment>
   );
 }

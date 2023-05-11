@@ -1,7 +1,9 @@
-import { configureStore, applyMiddleware } from "redux"
+import { applyMiddleware } from "redux"
 import { HYDRATE, createWrapper } from "next-redux-wrapper"
 import thunk from "redux-thunk"
 import reducers from "./reducers"
+import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './reducers'
 
 const combineMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== "production") {
@@ -23,8 +25,8 @@ const reducer = (state, action) => {
   }
 }
 
-const initStore = () => {
-  return configureStore(reducer, combineMiddleware([thunk]))
-}
+const initStore = () => 
+   configureStore({reducer})
 
-export const wrapper = createWrapper(initStore)
+
+export const wrapper = createWrapper(initStore, { debug: true })

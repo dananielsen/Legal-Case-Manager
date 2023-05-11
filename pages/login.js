@@ -17,7 +17,8 @@ import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
 import Link from "@mui/material/Link"
 import { loadUser } from '../redux/userAction';
-
+import { wrapper } from '../redux/store'
+import { useDispatch } from "react-redux"
 
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 const theme = createTheme()
@@ -135,14 +136,23 @@ const useLogin = () => {
   </Container>
   )
 }
-export async function getServerSideProps(context){
-  const session = await getSession(context)
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+  async ({ req }) => {
+    const session = await getSession({ req })
+    const cookies = parseCookies()
 
-  return {
-    props: {
-      session,
+    const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+    
+    await store.dispatch(loadUser(user?.email, user))
+
+    return {
+      props: {
+        session,
+      },
     }
   }
-}
+)
+  
 
 export default useLogin

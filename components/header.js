@@ -12,22 +12,44 @@ import { useSession } from "next-auth/react"
 import cookie from "js-cookie"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { loadUser } from "../redux/userAction"
 
 
 export default function ButtonAppBar() {
     const cookies = parseCookies()
     const router = useRouter()
     const [userState, setUserState] = useState("")
-
+    const [isLoggedIn, setisLoggedIn] = useState(true)
     
     
     const { data: session } = useSession()
-    console.log(session)
-    const user = cookies?.user ? JSON.parse(cookies.user) : ""
+    console.log(session, cookies.token)
+    const dispatch = useDispatch()
+
+    const user = cookies?.user
+    ? JSON.parse(cookies.user)
+    : session?.user
+    ? session?.user
+    : ""
+
+
     console.log(userState)
     useEffect(() => {
-      setUserState(user)
-    }, [router])
+      session ? setUserState(session.user) : setUserState(user)
+  
+      if (user) {
+        dispatch(loadUser(user.email, user))
+      }
+    }, [router, setUserState])
+    useEffect(() => {
+      if (user) {
+        setisLoggedIn(true)
+      }
+      if (!user) {
+        router.push("/login")
+      }
+    }, [isLoggedIn])
 
     const logoutHandler = async () => {
       if(session) {
