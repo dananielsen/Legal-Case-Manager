@@ -39,7 +39,7 @@ export default function ButtonAppBar() {
     }
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#4e7145' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -55,14 +55,14 @@ export default function ButtonAppBar() {
           </Typography>
           {user ? (
           <> 
-          <Button color="inherit" onClick={logoutHandler}>Logout</Button>
+          <Button color="inherit" onClick={logoutHandler} sx={{ color: '#ffffff' }}>Logout</Button>
          
           </>
           ) :  (
           <><Link href = "/login">
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" sx={{ color: '#ffffff' }}>Login</Button>
           </Link> <Link href = "/register">
-          <Button color="inherit">Register</Button>
+          <Button color="inherit" sx={{ color: '#ffffff' }}>Register</Button>
           </Link>
           </>)}
          
