@@ -1,15 +1,27 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import Link from 'next/link';
+// pages/index.js
 
-export default function Component() {
-  const { data: session } = useSession()
-  if(session) {
-    return <>
-      Signed in as {session.user.email} <br/>
-      <button onClick={() => signOut()}>Sign out</button>
-    </>
-  }
-  return <>
-    Not signed in <br/>
-    <button onClick={() => signIn()}>Sign in</button>
-  </>
-}
+import { useSession } from 'next-auth/react';
+import useLogin from './login';
+
+const IndexPage = () => {
+  const { data: session } = useSession();
+
+  return (
+    <div>
+      <h1>Welcome to Aviato</h1>
+      <p>Do you want to create a new account or log in?</p>
+      {!session ? (
+        <>
+          <Link href="/register">Create a new account</Link>
+          <br />
+          <Link href="/login">Log in</Link>
+        </>
+      ) : (
+        <useLogin />
+      )}
+    </div>
+  );
+};
+
+export default IndexPage;
