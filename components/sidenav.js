@@ -1,34 +1,99 @@
 // side navigation bar with buttons: Dashboard, Calendar, Cases, Tasks, Contacts, Documents, Communications, Reports, Settings
 // each button has a different color and icon
-
 import React from 'react';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ChatIcon from '@mui/icons-material/Chat';
+import ReportIcon from '@mui/icons-material/Report';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { ListItemButton } from '@mui/material';
+
+const drawerWidth = 240;
+
+
 
 const Sidebar = () => {
-  return (
-    <div className="flex flex-col h-screen">
-    <div className="bg-gray-800 py-6 px-4 flex flex-col justify-start items-center flex-shrink-0">
-        <SidebarButton text="Dashboard" icon="dashboard" color="bg-blue-500" />
-        <SidebarButton text="Calendar" icon="calendar" color="bg-green-500" />
-        <SidebarButton text="Cases" icon="case" color="bg-yellow-500" />
-        <SidebarButton text="Tasks" icon="tasks" color="bg-red-500" />
-        <SidebarButton text="Contacts" icon="contacts" color="bg-indigo-500" />
-        <SidebarButton text="Documents" icon="documents" color="bg-purple-500" />
-        <SidebarButton text="Communications" icon="communications" color="bg-pink-500" />
-        <SidebarButton text="Reports" icon="reports" color="bg-gray-500" />
-      </div>
-      <div className="flex-grow">
-        <SidebarButton text="Settings" icon="settings" color="bg-white text-black" />
-      </div>
-    </div>
-  );
-};
+  
 
-const SidebarButton = ({ text, icon, color }) => {
   return (
-    <button className={`flex items-center justify-start text-white rounded py-2 px-4 ${color}`}>
-      <span className="mr-3">{icon}</span>
-      <span>{text}</span>
-    </button>
+    <Drawer
+    variant="permanent"
+    sx={{
+      width: drawerWidth,
+      flexShrink: 0,
+      '& .MuiDrawer-paper': {
+        width: drawerWidth,
+        marginTop: '64px',
+      },
+    }}
+  >
+      
+      <List>
+        <ListItemButton key="Dashboard">
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItemButton>
+        <ListItemButton key="Calendar">
+          <ListItemIcon>
+            <CalendarTodayIcon />
+          </ListItemIcon>
+          <ListItemText primary="Calendar" />
+        </ListItemButton>
+        <ListItemButton key="Cases">
+          <ListItemIcon>
+            <WorkOutlineIcon />
+          </ListItemIcon>
+          <ListItemText primary="Cases" />
+        </ListItemButton>
+        <ListItemButton key="Tasks">
+          <ListItemIcon>
+            <AssignmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Tasks" />
+        </ListItemButton>
+        <ListItemButton key="Contacts">
+          <ListItemIcon>
+            <ContactsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Contacts" />
+        </ListItemButton>
+        <ListItemButton key="Documents">
+          <ListItemIcon>
+            <DescriptionIcon />
+          </ListItemIcon>
+          <ListItemText primary="Documents" />
+        </ListItemButton>
+        <ListItemButton key="Communications">
+          <ListItemIcon>
+            <ChatIcon />
+          </ListItemIcon>
+          <ListItemText primary="Communications" />
+        </ListItemButton>
+        <ListItemButton key="Reports">
+          <ListItemIcon>
+            <ReportIcon />
+          </ListItemIcon>
+          <ListItemText primary="Reports" />
+        </ListItemButton>
+        <ListItemButton key="Settings">
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItemButton>
+      </List>
+    </Drawer>
   );
 };
 

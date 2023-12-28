@@ -44,7 +44,7 @@ const useLogin = () => {
       
         cookie.set("token", data?.token)
         cookie.set("user", JSON.stringify(data?.user))
-        router.push('/')
+        router.push('/dashboard')
         console.log(email, password)
       }
 
@@ -54,6 +54,7 @@ const useLogin = () => {
         }
         cookie.remove('token')
         cookie.remove('user')
+        router.push('/login')
       }
       if (session)  {
         return (
